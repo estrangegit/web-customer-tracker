@@ -46,6 +46,19 @@ public class CustomerController {
 		return "customer-form";		
 	}
 	
+	@GetMapping("/showFormForUpdate")
+	public String showFormForUpdate(@ModelAttribute("customerId") int theId, Model theModel) {
+		
+		// get the customer from our service
+		Customer theCustomer = customerService.getCustomer(theId);
+		
+		// set customer as a model attribute to pre-populate the form
+		theModel.addAttribute("customer", theCustomer);
+				
+		// send over to our form 				
+		return "customer-form";
+	}	
+	
 	@PostMapping("/saveCustomer")
 	public String saveCustomer(@ModelAttribute("customer") Customer theCustomer) {
 				
@@ -53,6 +66,5 @@ public class CustomerController {
 		customerService.saveCustomer(theCustomer);
 		
 		return "redirect:/customer/list";
-	}
-	
+	}		
 }
