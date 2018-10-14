@@ -60,6 +60,9 @@ public class CRMLoggingAspect {
 		myLogger.info("=====>> in @AfterReturning: from method: " + theMethod);		
 		
 		// display data returned
-		myLogger.info("=====>> result: " + theResult.toString());
+		if(theResult != null)
+			myLogger.info("=====>> result: " + theResult.toString());
+		else
+			myLogger.info("=====>> result: null");			
 	}
 }
